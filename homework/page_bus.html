@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      .line {
+        overflow: hidden;
+      }
+      .seats {
+        margin: 2px;
+        float: left;
+        width: 30px;
+        height: 30px;
+      }
+      .enable {
+        background-color: grey;
+        border-radius: 8px;
+      }
+      .enable:hover {
+        background-color: rgb(150, 149, 149);
+        transform: scale(1.1, 1.1);
+      }
+
+      .disable {
+        border-radius: 8px;
+        background-color: palevioletred;
+      }
+      .wrap_bus {
+        border: 3px solid black;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 20px;
+        padding-right: 20px;
+        width: 420px;
+        height: 190px;
+      }
+      .bus_big {
+        position: relative;
+      }
+      .bus_big::before {
+        content: "";
+        border: 2px solid red;
+        width: 30px;
+        height: 5px;
+        top: -21px;
+        left: -30px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>경기도민 버스 예약 페이지</h1>
+    <div class="wrap_bus">
+      <div class="bus_big"></div>
+    </div>
+    <div>
+      <h3>시간 선택</h3>
+      <ul>
+        <li><a href="#" id="time1">07:00</a></li>
+        <li><a href="#" id="time2">07:30</a></li>
+        <li><a href="#" id="time3">18:30</a></li>
+        <li><a href="#" id="time4">19:00</a></li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    const socket = io.connect();
+    let alpa = ["A", "B", "C", "D", "E"];
+
+    socket.on("bus_res", (data) => {
+      alert("데이터 받스");
+      let $target = $("div[data-x = " + data.x + "][data-y = " + data.y + "]");
+      $target.removeClass("enable");
+      $target.addClass("disable");
+    });
+    $(window).ready(() => {
+      const onClickSeat = function () {
+        if ($(this).hasClass("disable")) {
+          return;
+        }
+        let x = $(this).attr("data-x");
+        let y = $(this).attr("data-y");
+        if (confirm(`${alpa[y]}${x}좌석을 예매하시겠습니까?`)) {
+          socket.emit("bus_res", { x, y });
+        } else {
+          alert("취소스");
+        }
+      };
+      time1.addEventListener("click", () => {
+        console.log("time 1");
+        socket.emit("time", { tc: 1 });
+      });
+      time2.addEventListener("click", () => {
+        console.log("time 2");
+        socket.emit("time", { tc: 2 });
+      });
+      time3.addEventListener("click", () => {
+        console.log("time 3");
+        socket.emit("time", { tc: 3 });
+      });
+      time4.addEventListener("click", () => {
+        console.log("time 4");
+        socket.emit("time", { tc: 4 });
+      });
+      $.getJSON("/seats", { dummy: new Date().getTime() }, (data) => {
+        $.each(data, (indexY, line) => {
+          let $line = $(`<div></div>`).addClass("line");
+          $.each(line, (indexX, seats) => {
+            let $output = $(`<div></div>`, {
+              class: "seats",
+              "data-x": indexX,
+              "data-y": indexY,
+            }).appendTo($line);
+            if (seats == 1) {
+              $output.addClass("enable").on("click", onClickSeat);
+            } else if (seats == 2) {
+              $output.addClass("disable");
+            }
+          });
+          $line.appendTo(".bus_big");
+        });
+      });
+    });
+  </script>
+</html>

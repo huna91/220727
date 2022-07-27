@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+  </head>
+  <body>
+    <div class="resister_wrap">
+      <div class="header">
+        <h1>
+          <a> <img src="./images/title.png" /> </a>
+        </h1>
+      </div>
+      <div class="title">
+        <h2>회원가입</h2>
+        <div>
+          <p>이미 코공 회원이신가요?</p>
+          <a href="#">로그인</a>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content_left">
+          <div class="content_left_wrap">
+            <div class="join_box">
+              <div class="sign_email">
+                <label>이메일주소</label>
+                <input id="input_email" />
+                <div class="reBox"></div>
+              </div>
+              <div class="sign_password">
+                <label>비밀번호</label>
+                <input id="input_password" />
+                <div class="reBox">
+                  ※ 비밀번호는 8자 이상 영어 대소문자와 숫자, 특수문자를
+                  포함하여 입력해 주세요.
+                </div>
+              </div>
+              <div class="sign_password_chk">
+                <label>비밀번호 확인</label>
+                <input id="input_password_chk" />
+                <div class="reBox"></div>
+              </div>
+              <div class="sign_id">
+                <label>아이디</label>
+                <input id="input_id" />
+                <div class="reBox">
+                  ※ 아이디는 3글자 이상 20자 이내로 입력해 주세요.
+                </div>
+              </div>
+            </div>
+            <div class="check_box">
+              <div class="agree_use">
+                <span><input type="checkbox" /> </span>
+                <span>이용약관 동의<em class="emBox"> (필수)</em></span>
+              </div>
+              <div class="agree_person">
+                <span><input type="checkbox" /> </span>
+                <span
+                  >개인정보 수직 및 이용 동의<em class="emBox">
+                    (필수)</em
+                  ></span
+                >
+              </div>
+              <div class="agree_event">
+                <span><input type="checkbox" /> </span>
+                <span
+                  >이벤트 등 프로모션 메일 수신 동의<em class="emBox"></em>
+                    (선택)</em
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="join_sub">
+              <button id="join_sub_btn">회원 가입</button>
+            </div>
+          </div>
+        </div>
+        <div class="content_right">
+          <div class="social_login">
+            <ul>
+              <li class="social_login_facebook">
+                <a class="facebook_hover" href="#">
+                  페이스북 계정으로 가입
+                  <span class="social_icon facebook_span">
+                    <img src="./images/icon_facebook.png" />
+                  </span>
+                </a>
+              </li>
+              <li class="social_login_kakao">
+                <a class="kakao_hover" href="#">
+                  카카오 계정으로 가입
+                  <span class="social_icon kakao_span">
+                    <img src="./images/icon_kakaotalk.png" />
+                  </span>
+                </a>
+              </li>
+              <li class="social_login_naver">
+                <a class="naver_hover" href="#">
+                  네이버 계정으로 가입
+                  <span class="social_icon naver_span">
+                    <img src="./images/icon_naver.png" />
+                  </span>
+                </a>
+              </li>
+              <li class="social_login_google">
+                <a class="google_hover" href="#">
+                  구글 계정으로 가입
+                  <span class="social_icon google_span">
+                    <img src="./images/icon_google.png" />
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./login.js"></script>
+</html>

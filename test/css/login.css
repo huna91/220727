@@ -1,0 +1,232 @@
+*{
+    box-sizing: border-box;
+}
+/* ---------------------header--------------------- */
+.header{
+    width: 100%;
+    height: 122px;
+}
+.header>h1{
+    display: flex;
+    justify-content: center;
+}
+.header>h1>a{
+    margin-top: 30px;
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    overflow: hidden;
+    
+}
+.header>h1>a>img{
+    width: 100%;
+    height: auto;
+}
+/* ---------------------title--------------------- */
+.title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title>h2{
+    font-size: 40px;
+}
+.title>div{
+    display: flex;
+    margin: 20px 0;
+}
+.title>div>a{
+    margin-left: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    color: yellowgreen;
+}
+/* ---------------------content--------------------- */
+.content{
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    /* background-color: beige; */
+}
+@media screen and (max-width : 835px){
+    .content{
+        flex-direction: column;
+        background-color: brown;
+        align-items: center;
+    }
+    .content_left{
+        width: 100%;
+        border-right: 0;
+    }
+    .content_right{
+        width: 100%;
+    }
+}
+/* ---------------------content_left--------------------- */
+.content_left{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    border-right: 1px solid yellowgreen;
+    align-items: flex-end;
+}
+.join_box{
+    display: flex;
+    flex-direction: column;
+}
+.join_box>div{
+    margin-bottom: 15px;
+    height: 43px;
+    width: 100%;
+    position: relative;
+}
+.join_box>div>label{
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    transition: 0.5s;
+}
+.join_box_label_active{
+    position: absolute;
+    top: 0px;
+    font-size: 5px;
+    transition: 0.5s;
+}
+.join_box>div>input{
+    top: 10px;
+    position: absolute;
+    height: 30px;
+    background-color: inherit;
+    border-top: 0;
+    border-bottom: 0.5px solid goldenrod;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+}
+.join_box>div>input:focus-visible{
+    box-shadow: 0 1px 0 0  yellowgreen;
+    transition: 0.5s;
+}
+.join_box, .check_box, .join_sub{
+    width: 423px;
+    margin: 10px 40px;
+}
+.join_box input{
+    width: 100%;
+}
+.reBox{
+    position: absolute;
+    font-size: 4px;
+    top: 42px;
+}
+.emBox{
+    color: red;
+    font-size: 15px;
+}
+#join_sub_btn{
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    background-color: yellowgreen;    
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+/* ---------------------content_right--------------------- */
+.content_right{
+    margin: 10px 0 0 40px;
+    width: 40%;
+}
+.social_login ul li{
+    position: relative;
+    list-style: none;
+    margin-bottom: 15px;
+    width: 209px;
+    height: 42px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.social_login ul li a{
+    display: block;
+    font-size: 12px;
+    text-decoration: none;
+    
+}
+.social_login_facebook{
+    background-color: #3b589c;
+}
+.facebook_hover{
+    color: white;
+}
+.social_login_facebook>a{
+    padding: 14.5px 0 14.5px 52px;
+}
+.social_login_facebook>a>span{
+    background-color: #2d4984;
+}
+.social_login_kakao{
+    background-color: #ffc000;
+}
+.kakao_hover{
+    color: white;
+}
+.social_login_kakao>a{
+    padding: 14.5px 0 14.5px 52px;
+}
+.social_login_kakao>a>span{
+    background-color: #ffae00;
+}
+.social_login_naver{
+    background-color: #2db400;
+}
+.naver_hover{
+    color: white;
+}
+.social_login_naver>a{
+    padding: 14.5px 0 14.5px 52px;
+}
+.social_login_naver>a>span{
+    background-color: #2ba901;
+}
+.social_login_google{
+    background-color: white;
+    border: 1px solid gray;
+}
+.google_hover{
+    color: grey;
+}
+.social_login_google>a{
+    padding: 14.5px 0 14.5px 52px;
+    overflow: hidden;
+}
+.social_login_google>a>span{
+    background-color: rgb(243, 243, 243);
+}
+.social_icon{
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: 0.7s;
+}
+.social_icon_active{
+    transition: 0.7s;
+    width: 209px;
+    border-radius: 5px;
+}
+.social_icon>img{
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
