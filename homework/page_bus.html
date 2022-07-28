@@ -28,6 +28,7 @@
 
       .disable {
         border-radius: 8px;
+        color: white;
         background-color: palevioletred;
       }
       .wrap_bus {
@@ -94,21 +95,47 @@
       };
       time1.addEventListener("click", () => {
         console.log("time 1");
-        socket.emit("time", { tc: 1 });
+        socket.emit("time", { tc: 0 });
       });
       time2.addEventListener("click", () => {
         console.log("time 2");
-        socket.emit("time", { tc: 2 });
+        socket.emit("time", { tc: 1 });
       });
       time3.addEventListener("click", () => {
         console.log("time 3");
-        socket.emit("time", { tc: 3 });
+        socket.emit("time", { tc: 2 });
       });
       time4.addEventListener("click", () => {
         console.log("time 4");
-        socket.emit("time", { tc: 4 });
+        socket.emit("time", { tc: 3 });
+      });
+      socket.on("re", () => {
+        $.getJSON("/seats", { dummy: new Date().getTime() }, (data) => {
+          document.querySelector(".bus_big").innerHTML = "";
+
+          $.each(data, (indexY, line) => {
+            let $line = $(`<div></div>`).addClass("line");
+            $.each(line, (indexX, seats) => {
+              let $output = $(`<div></div>`, {
+                class: "seats",
+                "data-x": indexX,
+                "data-y": indexY,
+              }).appendTo($line);
+              if (seats == 1) {
+                $output.addClass("enable").on("click", onClickSeat);
+                $output.html(alpa[indexY] + indexX);
+              } else if (seats == 2) {
+                $output.addClass("disable");
+                $output.html(alpa[indexY] + indexX);
+              }
+            });
+            $line.appendTo(".bus_big");
+          });
+        });
       });
       $.getJSON("/seats", { dummy: new Date().getTime() }, (data) => {
+        document.querySelector(".bus_big").innerHTML = "";
+
         $.each(data, (indexY, line) => {
           let $line = $(`<div></div>`).addClass("line");
           $.each(line, (indexX, seats) => {

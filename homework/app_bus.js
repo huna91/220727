@@ -10,6 +10,13 @@ const app = express();
 const server = app.listen(PORT, () => {
   console.log(`${PORT}번 포트 연결!`);
 });
+let seats = [
+  [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+  [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+];
 let seats1 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -39,7 +46,7 @@ let seats4 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 let _seats = [seats1, seats2, seats3, seats4];
-let tc = 0;
+let tc = 4;
 const io = socketio(server);
 
 app.get("/", (req, res) => {
@@ -56,6 +63,9 @@ const seat_ctr = app.get("/seats", (req, res) => {
   // app.get("/time/:2", (reqst, result) => {
   //   res.send(seats2);
   // });
+  if (tc == 4) {
+    res.send(seats);
+  }
   console.log(_seats[tc]);
   res.send(_seats[tc]);
 });
@@ -64,8 +74,8 @@ io.sockets.on("connection", (socket) => {
   console.log("소켓연결성공");
   socket.on("time", (data) => {
     tc = data.tc;
-    seat_ctr;
     console.log(tc);
+    io.sockets.emit("re");
   });
   socket.on("bus_res", (data) => {
     console.log("예약데이터 넘김");
